@@ -1,0 +1,58 @@
+<%- include('../partials/header') %>
+
+<main class="section">
+  <div class="container narrow">
+    <p class="eyebrow">Форма обратной связи</p>
+    <h1>Оставить заявку</h1>
+    <p>
+      Заполните форму, чтобы отправить запрос на поставку продукции.
+      Данные будут сохранены в PostgreSQL.
+    </p>
+
+    <% if (success) { %>
+      <div class="alert success">Заявка успешно отправлена и сохранена в базе данных.</div>
+    <% } %>
+
+    <% if (errors && errors.length > 0) { %>
+      <div class="alert error">
+        <strong>Проверьте форму:</strong>
+        <ul>
+          <% errors.forEach(function(error) { %>
+            <li><%= error %></li>
+          <% }) %>
+        </ul>
+      </div>
+    <% } %>
+
+    <form class="form" action="/request" method="POST">
+      <label>
+        ФИО *
+        <input type="text" name="fullName" value="<%= formData.fullName || '' %>" required>
+      </label>
+
+      <label>
+        Компания
+        <input type="text" name="company" value="<%= formData.company || '' %>">
+      </label>
+
+      <label>
+        Телефон *
+        <input type="text" name="phone" value="<%= formData.phone || '' %>" required>
+      </label>
+
+      <label>
+        E-mail *
+        <input type="email" name="email" value="<%= formData.email || '' %>" required>
+      </label>
+
+      <label>
+        Текст запроса *
+        <textarea name="message" rows="6" required><%= formData.message || '' %></textarea>
+      </label>
+
+      <button class="button" type="submit">Отправить заявку</button>
+    </form>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

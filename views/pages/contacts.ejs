@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+
+<main class="section">
+  <div class="container narrow">
+    <p class="eyebrow">Связь с компанией</p>
+    <h1>Контакты</h1>
+
+    <% if (error) { %>
+      <div class="alert error"><%= error %></div>
+    <% } %>
+
+    <% if (contacts) { %>
+      <div class="contact-list">
+        <p><strong>Телефон:</strong> <%= contacts.phone %></p>
+        <p><strong>E-mail:</strong> <%= contacts.email %></p>
+        <p><strong>Адрес:</strong> <%= contacts.address %></p>
+      </div>
+    <% } else { %>
+      <div class="contact-list">
+        <p><strong>Телефон:</strong> +7 (3952) 123-456</p>
+        <p><strong>E-mail:</strong> info@basis-project.ru</p>
+        <p><strong>Адрес:</strong> г. Иркутск</p>
+      </div>
+    <% } %>
+
+    <div class="messengers">
+      <a class="button secondary" href="mailto:info@basis-project.ru">Написать на почту</a>
+      <a class="button secondary" href="/request">Оставить заявку</a>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>
